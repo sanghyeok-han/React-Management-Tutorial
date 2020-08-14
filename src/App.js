@@ -14,3 +14,7 @@ function App() {
 }
 
 export default App;
+
+// C:\Users\User\Desktop\vsc 작업 공간\동빈나\React App\front>git remote add origin https://github.com/sanghyeok-han/React-Management-Tutorial.git
+
+// C:\Users\User\Desktop\vsc 작업 공간\동빈나\React App\front>git push origin master --force
