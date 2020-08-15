@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios'
 import './App.css';
 import Customer from './components/Customer';
 import Paper from '@material-ui/core/Paper'
@@ -8,6 +9,10 @@ import TableBody from '@material-ui/core/TableBody'
 import TableRow from '@material-ui/core/TableRow'
 import TableCell from '@material-ui/core/TableCell'
 import { withStyles } from '@material-ui/core/styles'
+
+const api = axios.create({
+  baseURL: 'http://localhost:5000'
+})
 
 const styles = theme => ({
   root: {
@@ -20,33 +25,19 @@ const styles = theme => ({
   }
 })
 
-const customers = [{
-  'id': 1,
-  'image': 'https://placeimg.com/64/64/1',
-  'name': '홍길동',
-  'birthday': '961222',
-  'gender': '남자',
-  'job':  '대학생'
-},
-{
-  'id': 2,
-  'image': 'https://placeimg.com/64/64/2',
-  'name': '홍길동',
-  'birthday': '961343',
-  'gender': '남자',
-  'job':  '프로그래머'
-},
-{
-  'id': 3,
-  'image': 'https://placeimg.com/64/64/3',
-  'name': '이순신',
-  'birthday': '962534',
-  'gender': '남자',
-  'job':  '디자이너'
-}
-]
-
 class App extends Component {
+
+  state = {
+    customers: []
+  }
+
+  constructor() {
+    super()
+    api.get("/api/customers").then(res => {
+      this.setState({ customers: res.data })
+    })
+  }
+
   render() {
     const { classes } = this.props
     return (
@@ -65,7 +56,7 @@ class App extends Component {
             </TableHead>
             <TableBody>
               {
-                customers.map((customer) => {
+                this.state.customers ? this.state.customers.map((customer) => {
                   return (
                     <Customer
                     key={customer.id}
@@ -76,7 +67,7 @@ class App extends Component {
                     gender={customer.gender}
                     job={customer.job}
                   />
-                )})
+                )}) : ""
               }
             </TableBody>
           </Table>
