@@ -1,22 +1,20 @@
-import React from 'react'
-import TableRow from '@material-ui/core/TableRow'
-import TableCell from '@material-ui/core/TableCell'
+import React from "react";
+import TableRow from "@material-ui/core/TableRow";
+import TableCell from "@material-ui/core/TableCell";
 
-
-class Customer extends React.Component {
-  render() {
-    return (
-      <TableRow>
-        <TableCell>{this.props.id}</TableCell>
-        <TableCell><img src={this.props.image} alt="profile" /></TableCell>
-        <TableCell>{this.props.name}</TableCell>
-        <TableCell>{this.props.birthday}</TableCell>
-        <TableCell>{this.props.gender}</TableCell>
-        <TableCell>{this.props.job}</TableCell>
-      </TableRow>
-    )
-  }
+function Customer({ id, image, name, birthday, gender, job }) {
+  return (
+    <TableRow>
+      <TableCell>{id}</TableCell>
+      <TableCell>
+        <img src={image} alt="profile" />
+      </TableCell>
+      <TableCell>{name}</TableCell>
+      <TableCell>{birthday}</TableCell>
+      <TableCell>{gender}</TableCell>
+      <TableCell>{job}</TableCell>
+    </TableRow>
+  );
 }
 
-
-export default Customer
+export default Customer;
